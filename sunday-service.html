@@ -28,6 +28,31 @@ gap:15px;
 .gallery img{
 width:100%;
 border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.03);
+}
+
+.lightbox{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.9);
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.lightbox img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
 }
 
 </style>
@@ -51,12 +76,28 @@ font-weight:bold;
   
 <div class="gallery">
 
-<img src="https://picsum.photos/600/400?11">
-<img src="https://picsum.photos/600/400?12">
-<img src="https://picsum.photos/600/400?13">
-<img src="https://picsum.photos/600/400?14">
+<img src="https://picsum.photos/1200/800?11" onclick="openImage(this.src)">
+<img src="https://picsum.photos/1200/800?12" onclick="openImage(this.src)">
+<img src="https://picsum.photos/1200/800?13" onclick="openImage(this.src)">
+<img src="https://picsum.photos/1200/800?14" onclick="openImage(this.src)">
 
 </div>
 
+<div id="lightbox" class="lightbox" onclick="closeImage()">
+    <img id="lightbox-img">
+</div>
+
+<script>
+
+function openImage(src){
+    document.getElementById("lightbox").style.display="flex";
+    document.getElementById("lightbox-img").src=src;
+}
+
+function closeImage(){
+    document.getElementById("lightbox").style.display="none";
+}
+
+</script>
 </body>
 </html>
