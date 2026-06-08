@@ -77,6 +77,27 @@ border-radius:10px;
     font-weight:bold;
 }
 
+.nav-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:40px;
+    background:rgba(255,255,255,.2);
+    color:white;
+    border:none;
+    padding:15px;
+    cursor:pointer;
+    border-radius:10px;
+}
+
+.prev-btn{
+    left:20px;
+}
+
+.next-btn{
+    right:20px;
+}
+
 </style>
 </head>
 
@@ -106,25 +127,92 @@ font-weight:bold;
 </div>
 
 <div id="lightbox" class="lightbox">
+
     <span class="close-btn" onclick="closeImage()">
         &times;
     </span>
+
     <a id="download-btn" href="" download>
         ⬇ Download Photo
     </a>
+
+    <button class="nav-btn prev-btn" onclick="previousImage(event)">
+        ←
+    </button>
+
     <img id="lightbox-img">
+
+    <button class="nav-btn next-btn" onclick="nextImage(event)">
+        →
+    </button>
+
 </div>
 
 <script>
 
+const images = [
+    "https://picsum.photos/1200/800?11",
+    "https://picsum.photos/1200/800?12",
+    "https://picsum.photos/1200/800?13",
+    "https://picsum.photos/1200/800?14"
+];
+
+let currentIndex = 0;
+
 function openImage(src){
+
+    currentIndex = images.indexOf(src);
+
     document.getElementById("lightbox").style.display = "flex";
+
     document.getElementById("lightbox-img").src = src;
+
     document.getElementById("download-btn").href = src;
+
 }
 
 function closeImage(){
-    document.getElementById("lightbox").style.display="none";
+
+    document.getElementById("lightbox").style.display = "none";
+
+}
+
+function nextImage(event){
+
+    event.stopPropagation();
+
+    currentIndex++;
+
+    if(currentIndex >= images.length){
+        currentIndex = 0;
+    }
+
+    updateImage();
+
+}
+
+function previousImage(event){
+
+    event.stopPropagation();
+
+    currentIndex--;
+
+    if(currentIndex < 0){
+        currentIndex = images.length - 1;
+    }
+
+    updateImage();
+
+}
+
+function updateImage(){
+
+    let src = images[currentIndex];
+
+    document.getElementById("lightbox-img").src = src;
+
+    document.getElementById("download-btn").href = src;
+
 }
 
 </script>
