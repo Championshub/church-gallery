@@ -83,21 +83,59 @@ font-weight:bold;
 
 </div>
 
-<div id="lightbox" class="lightbox" onclick="closeImage()">
+<div id="lightbox" class="lightbox">
+
+    <span class="close-btn" onclick="closeImage()">&times;</span>
+
+    <a id="download-btn" download>
+        Download Photo
+    </a>
+
     <img id="lightbox-img">
+
 </div>
 
 <script>
 
 function openImage(src){
+
     document.getElementById("lightbox").style.display="flex";
-    document.getElementById("lightbox-img").src=src;
+
+    document.getElementById("lightbox-img").src = src;
+
+    document.getElementById("download-btn").href = src;
+
 }
 
 function closeImage(){
     document.getElementById("lightbox").style.display="none";
 }
 
+.close-btn{
+    position:absolute;
+    top:20px;
+    right:30px;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+}
+
+#download-btn{
+    position:absolute;
+    top:25px;
+    left:30px;
+    background:white;
+    color:#0d47a1;
+    padding:10px 15px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+#download-btn:hover{
+    background:#f0f0f0;
+}
+  
 </script>
 </body>
 </html>
