@@ -157,27 +157,28 @@ fetch(API_URL)
 .then(response => response.json())
 .then(data => {
 
+    console.log("DATA RECEIVED:", data);
+
     images = data.map(photo => photo.url);
 
-    const gallery =
-    document.getElementById("gallery");
+    const gallery = document.getElementById("gallery");
+
+    let html = "";
 
     data.forEach(photo => {
+    console.log("Image URL:", photo.url);
 
-        gallery.innerHTML += `
-        <img src="${photo.url}"
-        onclick="openImage('${photo.url}')">
-        `;
+    html += `
+        <img src="${photo.url}" loading="lazy" onclick="openImage('${photo.url}')">
+    `;
+  });
 
-    });
+    gallery.innerHTML = html;
 
 })
 .catch(error => {
-
-    console.error(error);
-
+    console.error("ERROR:", error);
 });
-
 
 function openImage(src){
 
