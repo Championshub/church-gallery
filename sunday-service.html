@@ -117,12 +117,7 @@ font-weight:bold;
 ← Back to Gallery
 </a>
   
-<div class="gallery">
-
-<img src="https://picsum.photos/1200/800?11" onclick="openImage(this.src)">
-<img src="https://picsum.photos/1200/800?12" onclick="openImage(this.src)">
-<img src="https://picsum.photos/1200/800?13" onclick="openImage(this.src)">
-<img src="https://picsum.photos/1200/800?14" onclick="openImage(this.src)">
+<div class="gallery" id="gallery">
 
 </div>
 
@@ -149,33 +144,70 @@ font-weight:bold;
 </div>
 
 <script>
+<script>
 
-const images = [
-    "https://picsum.photos/1200/800?11",
-    "https://picsum.photos/1200/800?12",
-    "https://picsum.photos/1200/800?13",
-    "https://picsum.photos/1200/800?14"
-];
+let images = [];
 
 let currentIndex = 0;
 
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxjn5j5iE8jNRT-_2RagOCCt_SrO9thtgyxLJpiUWFs4De-AF4y-WLJuyzUTLe_EMAh/exec";
+
+
+fetch(API_URL)
+.then(response => response.json())
+.then(data => {
+
+    images = data.map(photo => photo.url);
+
+    const gallery =
+    document.getElementById("gallery");
+
+    data.forEach(photo => {
+
+        gallery.innerHTML += `
+        <img src="${photo.url}"
+        onclick="openImage('${photo.url}')">
+        `;
+
+    });
+
+})
+.catch(error => {
+
+    console.error(error);
+
+});
+
+
 function openImage(src){
 
-    currentIndex = images.indexOf(src);
+    currentIndex =
+    images.indexOf(src);
 
-    document.getElementById("lightbox").style.display = "flex";
+    document
+    .getElementById("lightbox")
+    .style.display = "flex";
 
-    document.getElementById("lightbox-img").src = src;
+    document
+    .getElementById("lightbox-img")
+    .src = src;
 
-    document.getElementById("download-btn").href = src;
+    document
+    .getElementById("download-btn")
+    .href = src;
 
 }
+
 
 function closeImage(){
 
-    document.getElementById("lightbox").style.display = "none";
+    document
+    .getElementById("lightbox")
+    .style.display = "none";
 
 }
+
 
 function nextImage(event){
 
@@ -184,12 +216,15 @@ function nextImage(event){
     currentIndex++;
 
     if(currentIndex >= images.length){
+
         currentIndex = 0;
+
     }
 
     updateImage();
 
 }
+
 
 function previousImage(event){
 
@@ -198,22 +233,33 @@ function previousImage(event){
     currentIndex--;
 
     if(currentIndex < 0){
-        currentIndex = images.length - 1;
+
+        currentIndex =
+        images.length - 1;
+
     }
 
     updateImage();
 
 }
 
+
 function updateImage(){
 
-    let src = images[currentIndex];
+    let src =
+    images[currentIndex];
 
-    document.getElementById("lightbox-img").src = src;
+    document
+    .getElementById("lightbox-img")
+    .src = src;
 
-    document.getElementById("download-btn").href = src;
+    document
+    .getElementById("download-btn")
+    .href = src;
 
 }
+
+</script>
 
 </script>
 </body>
