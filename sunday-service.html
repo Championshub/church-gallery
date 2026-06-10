@@ -101,6 +101,18 @@ border-radius:10px;
     right:20px;
 }
 
+#photo-counter{
+    position:absolute;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,.6);
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+    font-size:14px;
+}
+  
 </style>
 </head>
 
@@ -140,9 +152,13 @@ font-weight:bold;
 
     <img id="lightbox-img">
 
+    <div id="photo-counter">
+      Photo 1 of 1
+    </div>
+
     <button class="nav-btn next-btn" onclick="nextImage(event)">
-        →
-    </button>
+    →
+</button>
 
 </div>
 
@@ -204,6 +220,11 @@ function openImage(src){
     .getElementById("download-btn")
     .href = photo.download;
 
+    document
+    .getElementById("photo-counter")
+    .innerText =
+    `Photo ${currentIndex + 1} of ${images.length}`;
+
 }
 
 function closeImage(){
@@ -259,6 +280,11 @@ function updateImage(){
     document
     .getElementById("download-btn")
     .href = photo.download;
+  
+    document
+    .getElementById("photo-counter")
+    .innerText =
+    `Photo ${currentIndex + 1} of ${images.length}`;
 
 }
 
