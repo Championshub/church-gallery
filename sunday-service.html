@@ -276,6 +276,38 @@ function updateImage(){
 
 }
 
+document.addEventListener("keydown", function(event){
+
+    if(
+        document.getElementById("lightbox")
+        .style.display !== "flex"
+    ){
+        return;
+    }
+
+    if(event.key === "ArrowRight"){
+
+        nextImage({
+            stopPropagation:function(){}
+        });
+
+    }
+
+    if(event.key === "ArrowLeft"){
+
+        previousImage({
+            stopPropagation:function(){}
+        });
+
+    }
+
+    if(event.key === "Escape"){
+
+        closeImage();
+
+    }
+
+});
 </script>
 
 </body>
