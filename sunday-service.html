@@ -159,7 +159,7 @@ fetch(API_URL)
 
     console.log("DATA RECEIVED:", data);
 
-    images = data.map(photo => photo.url);
+    images = data;
 
     const gallery = document.getElementById("gallery");
 
@@ -183,7 +183,7 @@ fetch(API_URL)
 function openImage(src){
 
     currentIndex =
-    images.indexOf(src);
+    images.findIndex(photo => photo.url === src);
 
     document
     .getElementById("lightbox")
@@ -193,9 +193,15 @@ function openImage(src){
     .getElementById("lightbox-img")
     .src = src;
 
-    document
-    .getElementById("download-btn")
-    .href = src;
+    const photo =
+images[currentIndex];
+
+const photo =
+images[currentIndex];
+
+document
+.getElementById("download-btn")
+.href = photo.download;
 
 }
 
@@ -221,7 +227,18 @@ function nextImage(event){
 
     }
 
-    updateImage();
+    function updateImage(){
+
+    let photo =
+    images[currentIndex];
+
+    document
+    .getElementById("lightbox-img")
+    .src = photo.url;
+
+    document
+    .getElementById("download-btn")
+    .href = photo.download;
 
 }
 
