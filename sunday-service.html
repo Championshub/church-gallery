@@ -146,38 +146,39 @@ font-weight:bold;
 <script>
 
 let images = [];
-
 let currentIndex = 0;
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxjn5j5iE8jNRT-_2RagOCCt_SrO9thtgyxLJpiUWFs4De-AF4y-WLJuyzUTLe_EMAh/exec";
 
-
 fetch(API_URL)
 .then(response => response.json())
 .then(data => {
 
-    console.log("DATA RECEIVED:", data);
-
     images = data;
 
-    const gallery = document.getElementById("gallery");
+    const gallery =
+    document.getElementById("gallery");
 
     let html = "";
 
     data.forEach(photo => {
-    console.log("Image URL:", photo.url);
 
-    html += `
-        <img src="${photo.url}" loading="lazy" onclick="openImage('${photo.url}')">
-    `;
-  });
+        html += `
+        <img src="${photo.url}"
+        loading="lazy"
+        onclick="openImage('${photo.url}')">
+        `;
+
+    });
 
     gallery.innerHTML = html;
 
 })
 .catch(error => {
-    console.error("ERROR:", error);
+
+    console.error(error);
+
 });
 
 function openImage(src){
@@ -185,26 +186,22 @@ function openImage(src){
     currentIndex =
     images.findIndex(photo => photo.url === src);
 
+    const photo =
+    images[currentIndex];
+
     document
     .getElementById("lightbox")
     .style.display = "flex";
 
     document
     .getElementById("lightbox-img")
-    .src = src;
+    .src = photo.url;
 
-    const photo =
-images[currentIndex];
-
-const photo =
-images[currentIndex];
-
-document
-.getElementById("download-btn")
-.href = photo.download;
+    document
+    .getElementById("download-btn")
+    .href = photo.download;
 
 }
-
 
 function closeImage(){
 
@@ -213,7 +210,6 @@ function closeImage(){
     .style.display = "none";
 
 }
-
 
 function nextImage(event){
 
@@ -227,21 +223,9 @@ function nextImage(event){
 
     }
 
-    function updateImage(){
-
-    let photo =
-    images[currentIndex];
-
-    document
-    .getElementById("lightbox-img")
-    .src = photo.url;
-
-    document
-    .getElementById("download-btn")
-    .href = photo.download;
+    updateImage();
 
 }
-
 
 function previousImage(event){
 
@@ -260,19 +244,18 @@ function previousImage(event){
 
 }
 
-
 function updateImage(){
 
-    let src =
+    const photo =
     images[currentIndex];
 
     document
     .getElementById("lightbox-img")
-    .src = src;
+    .src = photo.url;
 
     document
     .getElementById("download-btn")
-    .href = src;
+    .href = photo.download;
 
 }
 
@@ -308,6 +291,7 @@ document.addEventListener("keydown", function(event){
     }
 
 });
+
 </script>
 
 </body>
