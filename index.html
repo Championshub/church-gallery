@@ -135,7 +135,8 @@ footer{
 
 <a href="sunday-service.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img id="cover-sunday">
+<img id="cover-sunday"
+src="https://lh3.googleusercontent.com/d/1-yn5RABqOF6-Xg-cWsI8q7P0f-AG-NrU">
 <div class="card-content">
 <h3>Sunday Service</h3>
 <p>Weekly worship moments.</p>
@@ -146,7 +147,8 @@ footer{
 
 <a href="rtc-camp.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img id="cover-rtc">
+<img id="cover-rtc"
+src="https://lh3.googleusercontent.com/d/1_2q_CWLokKR3hUsy3R0K3NQAlOE9OQNc">
 <div class="card-content">
 <h3>RTC Camp</h3>
 <p>RTC memories.</p>
@@ -157,7 +159,8 @@ footer{
 
 <a href="youth-sunday.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img id="cover-youth">
+<img id="cover-youth"
+src="https://lh3.googleusercontent.com/d/1VbY0jPxFlKmSgNIoE4hik74MHtUuZeQ0">
 <div class="card-content">
 <h3>Youth Sunday</h3>
 <p>Youth Sunday celebrations.</p>
@@ -168,7 +171,8 @@ footer{
 
 <a href="special-service.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img id="cover-special">
+<img id="cover-special"
+src="https://lh3.googleusercontent.com/d/1aNSP7mv1Is4wjvpBGWVBLihPefbi_BZK">
 <div class="card-content">
 <h3>Special Sunday</h3>
 <p>Special worship services.</p>
@@ -179,7 +183,8 @@ footer{
 
 <a href="cultural-sunday.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img id="cover-cultural">
+<img id="cover-cultural"
+src="https://lh3.googleusercontent.com/d/1u085_tgBIT-YMbQX9FXfnUKooSMhqWuC">
 <div class="card-content">
 <h3>Cultural Sunday</h3>
 <p>Culture, colours and celebration.</p>
@@ -190,7 +195,8 @@ footer{
 
 <a href="thanksgiving-service.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img id="cover-thanksgiving">
+<img id="cover-thanksgiving"
+src="https://lh3.googleusercontent.com/d/1GpzbA2c97TZ7Pp0tuuinzNF1zJGBegZs">
 <div class="card-content">
 <h3>Thanksgiving Sunday</h3>
 <p>Giving thanks unto God.</p>
@@ -202,7 +208,8 @@ footer{
 
 <a href="midweek-service.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img id="cover-midweek">
+<img id="cover-midweek"
+src="https://lh3.googleusercontent.com/d/1uhYLIABiRHSqc20I0wLH39WQbvPp6fPN">
 <div class="card-content">
 <h3>Mid-Week Service</h3>
 <p>Faith Clinic and Digging Deeps Services</p>
@@ -213,7 +220,8 @@ footer{
     
 <a href="other-events.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img id="cover-other">
+<img id="cover-other"
+src="https://lh3.googleusercontent.com/d/16dxe1jnYBLbPuCegveLHOvXo981NulK1">
 <div class="card-content">
 <h3>Other Events</h3>
 <p>Conferences, outreaches and more.</p>
@@ -248,15 +256,9 @@ fetch(
       "count-" + key
     );
 
-    if(cover){
+   if(cover){
 
-      cover.onload = function(){
-
-          cover.style.opacity = "1";
-
-      };
-
-      cover.src = data[key].cover;
+    cover.style.opacity = "1";
 
 }
 
