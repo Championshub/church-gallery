@@ -133,60 +133,66 @@ footer{
 
 <a href="sunday-service.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img src="https://lh3.googleusercontent.com/d/1lvmhIq1hKCDli0XhPLjbtC8RDvKdvXZy">
+<img id="cover-sunday" src="">
 <div class="card-content">
 <h3>Sunday Service</h3>
 <p>Weekly worship moments.</p>
+<p id="count-sunday">Loading...</p>
 </div>
 </div>
 </a>
 
 <a href="rtc-camp.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img src="https://picsum.photos/500/300?2">
+<img id="cover-rtc" src="">
 <div class="card-content">
 <h3>RTC Camp</h3>
 <p>RTC memories.</p>
+<p id="count-rtc">Loading...</p>
 </div>
 </div>
 </a>
 
 <a href="youth-sunday.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img src="https://picsum.photos/500/300?3">
+<img id="cover-youth" src="">
 <div class="card-content">
 <h3>Youth Sunday</h3>
 <p>Youth Sunday celebrations.</p>
+<p id="count-youth">Loading...</p>
 </div>
 </div>
 </a>
 
 <a href="special-service.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img src="https://picsum.photos/500/300?4">
+<img id="cover-special" src="">
 <div class="card-content">
 <h3>Special Sunday</h3>
 <p>Special worship services.</p>
+<p id="count-special">Loading...</p>
 </div>
 </div>
 </a>
 
 <a href="cultural-sunday.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img src="https://picsum.photos/500/300?5">
+<img id="cover-cultural" src="">
 <div class="card-content">
 <h3>Cultural Sunday</h3>
 <p>Culture, colours and celebration.</p>
+<p id="count-cultural">Loading...</p>
 </div>
 </div>
 </a>
 
 <a href="thanksgiving-service.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img src="https://picsum.photos/500/300?6">
+<img id="cover-thanksgiving" src="">
 <div class="card-content">
 <h3>Thanksgiving Sunday</h3>
 <p>Giving thanks unto God.</p>
+<p id="count-thanksgiving">Loading...</p>
 </div>
 </div>
 </a>
@@ -194,20 +200,22 @@ footer{
 
 <a href="midweek-service.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img src="https://picsum.photos/500/300?7">
+<img id="cover-midweek" src="">
 <div class="card-content">
 <h3>Mid-Week Service</h3>
 <p>Faith Clinic and Digging Deeps Services</p>
+<p id="count-midweek">Loading...</p>
 </div>
 </div>
 </a>
     
 <a href="other-events.html" style="text-decoration:none;color:inherit;">
 <div class="card">
-<img src="https://picsum.photos/500/300?8">
+<img id="cover-other" src="">
 <div class="card-content">
 <h3>Other Events</h3>
 <p>Conferences, outreaches and more.</p>
+<p id="count-other">Loading...</p>
 </div>
 </div>
 </a>
@@ -217,6 +225,48 @@ footer{
 <footer>
 <p>© 2026 RCCG Praise and Miracle Parish.</p>
 </footer>
+
+<script>
+
+fetch(
+"https://script.google.com/macros/s/AKfycbxjn5j5iE8jNRT-_2RagOCCt_SrO9thtgyxLJpiUWFs4De-AF4y-WLJuyzUTLe_EMAh/exec?stats=true"
+)
+.then(response => response.json())
+.then(data => {
+
+  Object.keys(data).forEach(key => {
+
+    const cover =
+    document.getElementById(
+      "cover-" + key
+    );
+
+    const count =
+    document.getElementById(
+      "count-" + key
+    );
+
+    if(cover){
+
+      cover.src =
+      data[key].cover;
+
+    }
+
+    if(count){
+
+      count.innerHTML =
+      "📷 " +
+      data[key].count +
+      " Photos";
+
+    }
+
+  });
+
+});
+
+</script>
 
 </body>
 </html>
