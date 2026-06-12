@@ -112,6 +112,33 @@ border-radius:10px;
     border-radius:20px;
     font-size:14px;
 }
+
+#loader{
+    text-align:center;
+    padding:50px;
+}
+
+.spinner{
+    width:50px;
+    height:50px;
+    border:5px solid #ddd;
+    border-top:5px solid #0d47a1;
+    border-radius:50%;
+    margin:auto;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    100%{
+        transform:rotate(360deg);
+    }
+
+}
   
 </style>
 </head>
@@ -131,6 +158,14 @@ font-weight:bold;
 ">
 ← Back to Gallery
 </a>
+
+<div id="loader">
+
+    <div class="spinner"></div>
+
+    <p>Loading Photos...</p>
+
+</div>
   
 <div class="gallery" id="gallery">
   
@@ -192,6 +227,10 @@ fetch(API_URL)
     });
 
     gallery.innerHTML = html;
+
+    document
+.getElementById("loader")
+.style.display = "none";
 
 })
 .catch(error => {
