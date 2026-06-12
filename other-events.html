@@ -360,6 +360,49 @@ document.addEventListener("keydown", function(event){
 
 });
 
+let touchStartX = 0;
+let touchEndX = 0;
+
+document
+.getElementById("lightbox")
+.addEventListener("touchstart", function(e){
+
+    touchStartX =
+    e.changedTouches[0].screenX;
+
+});
+
+document
+.getElementById("lightbox")
+.addEventListener("touchend", function(e){
+
+    touchEndX =
+    e.changedTouches[0].screenX;
+
+    handleSwipe();
+
+});
+
+function handleSwipe(){
+
+    if(touchEndX < touchStartX - 50){
+
+        nextImage({
+            stopPropagation:function(){}
+        });
+
+    }
+
+    if(touchEndX > touchStartX + 50){
+
+        previousImage({
+            stopPropagation:function(){}
+        });
+
+    }
+
+}
+
 </script>
 
 </body>
